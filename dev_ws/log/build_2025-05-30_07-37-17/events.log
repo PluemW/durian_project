@@ -1,0 +1,48 @@
+[0.000000] (-) TimerEvent: {}
+[0.000434] (robot_main) JobQueued: {'identifier': 'robot_main', 'dependencies': OrderedDict()}
+[0.000474] (robot_main) JobStarted: {'identifier': 'robot_main'}
+[0.021688] (robot_main) JobProgress: {'identifier': 'robot_main', 'progress': 'cmake'}
+[0.022205] (robot_main) Command: {'cmd': ['/usr/bin/cmake', '/home/dev_ws/src/robot_main', '-DCMAKE_INSTALL_PREFIX=/home/dev_ws/install/robot_main'], 'cwd': '/home/dev_ws/build/robot_main', 'env': OrderedDict({'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'HOSTNAME': 'pwwq', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home', 'OLDPWD': '/home', 'PYTHONUNBUFFERED': '1', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) ${debian_chroot:+($debian_chroot)}\\u@\\h:\\w\\$', 'MAKEFLAGS': '"-j 4"', '_colcon_cd_root': '/home/dev_ws', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'all', 'TERM': 'xterm-256color', 'PATH': '/opt/venv/bin:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/opt/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'XDG_RUNTIME_DIR': "'/tmp/runtime-root'", 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'RMW_IMPLEMENTATION': 'rmw_cyclonedds_cpp', 'ROS_DOMAIN_ID': '21', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'GZ_VERSION': 'harmonic', 'VIRTUAL_ENV': '/opt/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/dev_ws/build/robot_main', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.099679] (-) TimerEvent: {}
+[0.130423] (robot_main) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.195450] (robot_main) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[0.199810] (-) TimerEvent: {}
+[0.220518] (robot_main) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.299902] (-) TimerEvent: {}
+[0.338559] (robot_main) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.347127] (robot_main) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.347723] (robot_main) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.348405] (robot_main) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.360719] (robot_main) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.400028] (-) TimerEvent: {}
+[0.479537] (robot_main) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.488959] (robot_main) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.489250] (robot_main) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.489574] (robot_main) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.500142] (-) TimerEvent: {}
+[0.509435] (robot_main) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[0.600302] (-) TimerEvent: {}
+[0.636034] (robot_main) StdoutLine: {'line': b'-- Found Python3: /opt/venv/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[0.700430] (-) TimerEvent: {}
+[0.800731] (-) TimerEvent: {}
+[0.815313] (robot_main) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.17.2 (/opt/ros/jazzy/share/ament_lint_auto/cmake)\n'}
+[0.835481] (robot_main) StderrLine: {'line': b'Traceback (most recent call last):\n'}
+[0.835818] (robot_main) StderrLine: {'line': b'  File "/opt/ros/jazzy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 22, in <module>\n'}
+[0.835987] (robot_main) StderrLine: {'line': b'    from catkin_pkg.package import parse_package_string\n'}
+[0.836136] (robot_main) StderrLine: {'line': b"ModuleNotFoundError: No module named 'catkin_pkg'\n"}
+[0.838399] (robot_main) StderrLine: {'line': b'\x1b[31mCMake Error at /opt/ros/jazzy/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:95 (message):\n'}
+[0.838484] (robot_main) StderrLine: {'line': b'  execute_process(/opt/venv/bin/python3\n'}
+[0.838537] (robot_main) StderrLine: {'line': b'  /opt/ros/jazzy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py\n'}
+[0.838594] (robot_main) StderrLine: {'line': b'  /home/dev_ws/src/robot_main/package.xml\n'}
+[0.838709] (robot_main) StderrLine: {'line': b'  /home/dev_ws/build/robot_main/ament_cmake_core/package.cmake) returned\n'}
+[0.838883] (robot_main) StderrLine: {'line': b'  error code 1\n'}
+[0.838989] (robot_main) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[0.839094] (robot_main) StderrLine: {'line': b'  /opt/ros/jazzy/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:49 (_ament_package_xml)\n'}
+[0.839199] (robot_main) StderrLine: {'line': b'  /opt/ros/jazzy/share/ament_lint_auto/cmake/ament_lint_auto_find_test_dependencies.cmake:31 (ament_package_xml)\n'}
+[0.839303] (robot_main) StderrLine: {'line': b'  CMakeLists.txt:23 (ament_lint_auto_find_test_dependencies)\n'}
+[0.839428] (robot_main) StderrLine: {'line': b'\n'}
+[0.839539] (robot_main) StderrLine: {'line': b'\x1b[0m\n'}
+[0.839643] (robot_main) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.844376] (robot_main) CommandEnded: {'returncode': 1}
+[0.872230] (robot_main) JobEnded: {'identifier': 'robot_main', 'rc': 1}
+[0.882913] (-) EventReactorShutdown: {}

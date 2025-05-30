@@ -1,0 +1,23 @@
+-- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found ament_lint_auto: 0.17.2 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/dev_ws/build/robot_main
+-- Install configuration: ""
+-- Installing: /home/dev_ws/install/robot_main/share/ament_index/resource_index/package_run_dependencies/robot_main
+-- Installing: /home/dev_ws/install/robot_main/share/ament_index/resource_index/parent_prefix_path/robot_main
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/environment/ament_prefix_path.sh
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/environment/ament_prefix_path.dsv
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/environment/path.sh
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/environment/path.dsv
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/local_setup.bash
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/local_setup.sh
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/local_setup.zsh
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/local_setup.dsv
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/package.dsv
+-- Installing: /home/dev_ws/install/robot_main/share/ament_index/resource_index/packages/robot_main
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/cmake/robot_mainConfig.cmake
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/cmake/robot_mainConfig-version.cmake
+-- Installing: /home/dev_ws/install/robot_main/share/robot_main/package.xml
