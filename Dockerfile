@@ -1,6 +1,7 @@
 FROM osrf/ros:jazzy-desktop
 
 ARG ros_ws=/home/dev_ws
+ARG ros_gz_ws=/home/ros_gz_ws
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -79,7 +80,7 @@ RUN pip install --upgrade pip
 COPY ./docker/ros2/requirements.txt .
 RUN pip install -r ./requirements.txt
 # Install transforms3d, pyproj, and python-pcl
-RUN pip install transforms3d pyproj
+RUN pip install transforms3d pyproj catkin-pkg pyyaml
 
 # Custom proj-5.2.0 installation (optional, comment out if libproj-dev suffices)
 COPY ./docker/ros2/lib /dep
@@ -96,13 +97,16 @@ ENV PYTHONUNBUFFERED=1
 # Set up ROS environment
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
     && echo "source /home/dev_ws/install/setup.bash" >> ~/.bashrc \
-    && echo "GZ_VERSION=harmonic" >> ~/.bashrc \
-    && echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc \
+    && echo "source /home/ros_gz_ws/install/setup.bash" >> ~/.bashrc \
+    && echo "GZ_VERSION=harmonic" >> ~/.bashrc 
+
+COPY ./dev_ws/src /home/dev_ws/src
+COPY ./ros_gz_ws/src /home/ros_gz_ws/src
+
+RUN echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc \
     && echo "export _colcon_cd_root=${ros_ws}" >> ~/.bashrc \
     && echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc \
     && echo "source /opt/venv/bin/activate" >> ~/.bashrc
-
-COPY ./dev_ws/src /home/dev_ws/src
 
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["sleep", "infinity"]
