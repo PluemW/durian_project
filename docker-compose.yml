@@ -7,7 +7,7 @@ services:
       args:
         - user_id=1000
         - ros_ws=/home/dev_ws
-        # - ros_gz_ws=/home/ros_gz_ws
+        - ros_gz_ws=/home/ros_gz_ws
     image: durian-robot-ros2
 
     deploy:
@@ -33,7 +33,7 @@ services:
     volumes:
       - ./:/home/project
       - ./dev_ws:/home/dev_ws  
-      # - ./ros_gz_ws:/home/ros_gz_ws
+      - ./ros_gz_ws:/home/ros_gz_ws
       - ./docker/ros2/.ros:/home/.ros
 
     network_mode: host
@@ -41,6 +41,11 @@ services:
     tty: true
     stdin_open: true
     stop_grace_period: 1s
+
+  robot_bringup:
+    extends: 
+      service: ros2
+    entrypoint: bash -c "source ~/.bashrc && ros2 launch robot_simulation robot_bringup.launch.py"
 
   dev:
     extends:

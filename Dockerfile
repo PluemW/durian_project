@@ -1,3 +1,4 @@
+# Base image for ROS 2 Jazzy
 FROM osrf/ros:jazzy-desktop
 
 ARG ros_ws=/home/dev_ws
@@ -5,30 +6,32 @@ ARG ros_gz_ws=/home/ros_gz_ws
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Add Gazebo repository
-RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
-
-# Install apt dependencies, including python3-venv and dependencies for python-pcl
+# Core tools
 RUN apt-get update && apt-get install -y \
     python3-pip \
     python-is-python3 \
     python3-colcon-clean \
-    python3-venv \
-    python3-dev \
     make \
-    cmake \
     curl \
     nano \
     lsb-release \
     wget \
-    libgflags2.2 \
     libgflags-dev \
     libwebsocketpp-dev \
     nlohmann-json3-dev \
     libasio-dev \
-    gnupg \
+    gnupg
+
+RUN sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+
+# Install Gazebo harmonic + sim tools + SDFormat
+RUN apt-get update && apt-get install -y \
     gz-harmonic \
+    libsdformat14
+
+# Install ROS 2 core and navigation tools
+RUN apt-get update && apt-get install -y \
     ros-jazzy-joint-state-publisher \
     ros-jazzy-robot-localization \
     ros-jazzy-plotjuggler-ros \
@@ -57,32 +60,19 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-image-common \
     ros-jazzy-topic-tools \
     ros-jazzy-rosbag2-storage-mcap \
-    ros-jazzy-foxglove-bridge \
+    ros-jazzy-foxglove-bridge
+
+# Python libraries
+RUN pip install --break-system-packages transforms3d pyproj
+
+# Extra tools
+RUN apt-get install -y \
     less \
     xterm \
     byobu \
-    python3-opencv \
-    libpcl-dev \
-    libproj-dev \
-    libboost-all-dev \
-    libeigen3-dev \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+    python3-opencv
 
-# Create a virtual environment for pip installations
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Upgrade pip in the virtual environment
-RUN pip install --upgrade pip
-
-# Install Python dependencies
-COPY ./docker/ros2/requirements.txt .
-RUN pip install -r ./requirements.txt
-# Install transforms3d, pyproj, and python-pcl
-RUN pip install transforms3d pyproj catkin-pkg pyyaml
-
-# Custom proj-5.2.0 installation (optional, comment out if libproj-dev suffices)
+# Install custom PROJ library
 COPY ./docker/ros2/lib /dep
 RUN cd /dep/proj-5.2.0 \
     && bash ./configure \
@@ -90,23 +80,37 @@ RUN cd /dep/proj-5.2.0 \
     && make install \
     && ln -s /usr/local/lib/libproj.so.13 /usr/lib/libproj.so.13
 
+# Install Python requirements
+COPY ./docker/ros2/requirements.txt .
+RUN pip install --break-system-packages -r ./requirements.txt
+
+# Set working directory
 WORKDIR /home
 ENV HOME=/home
 ENV PYTHONUNBUFFERED=1
 
-# Set up ROS environment
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
-    && echo "source /home/dev_ws/install/setup.bash" >> ~/.bashrc \
-    && echo "source /home/ros_gz_ws/install/setup.bash" >> ~/.bashrc \
-    && echo "GZ_VERSION=harmonic" >> ~/.bashrc 
-
+# Copy source workspaces
 COPY ./dev_ws/src /home/dev_ws/src
 COPY ./ros_gz_ws/src /home/ros_gz_ws/src
 
+# rosdep fix and install
+RUN rosdep init || true && rosdep update
+RUN cd /home/ros_gz_ws && rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO}
+
+# Source ROS setup
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
+RUN echo "source /home/dev_ws/install/setup.bash" >> ~/.bashrc
+RUN echo "source /home/ros_gz_ws/install/setup.bash" >> ~/.bashrc
+RUN echo "GZ_VERSION=harmonic" >> ~/.bashrc
+
+# Colcon tools
 RUN echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc \
     && echo "export _colcon_cd_root=${ros_ws}" >> ~/.bashrc \
-    && echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc \
-    && echo "source /opt/venv/bin/activate" >> ~/.bashrc
+    && echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
 
+# Clean up
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Entry point
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["sleep", "infinity"]

@@ -1,0 +1,4 @@
+1750315976.4025910 [INFO] [launch]: All log files can be found below /home/.ros/log/2025-06-19-06-52-56-401707-pwwq-569
+1750315976.4027689 [INFO] [launch]: Default logging verbosity is set to INFO
+1750315976.7753365 [INFO] [gazebo-1]: process started with pid [572]
+1750315979.6843705 [INFO] [gazebo-1]: process has finished cleanly [pid 572]

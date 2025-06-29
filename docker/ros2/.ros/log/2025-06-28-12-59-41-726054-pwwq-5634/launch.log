@@ -1,0 +1,5 @@
+1751115581.7274296 [INFO] [launch]: All log files can be found below /home/.ros/log/2025-06-28-12-59-41-726054-pwwq-5634
+1751115581.7279317 [INFO] [launch]: Default logging verbosity is set to INFO
+1751115581.7674913 [ERROR] [launch]: Caught exception in launch (see debug for traceback): Caught multiple exceptions when trying to load file of format [py]:
+ - ExpatError: not well-formed (invalid token): line 31, column 16
+ - InvalidFrontendLaunchFileError: The launch file may have a syntax error, or its format is unknown

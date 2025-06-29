@@ -1,0 +1,5 @@
+1751115397.2900913 [INFO] [launch]: All log files can be found below /home/.ros/log/2025-06-28-12-56-37-288816-pwwq-5369
+1751115397.2905707 [INFO] [launch]: Default logging verbosity is set to INFO
+1751115397.7950110 [INFO] [gazebo-1]: process started with pid [5372]
+1751115474.0708778 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1751115474.4816172 [ERROR] [gazebo-1]: process has died [pid 5372, exit code -2, cmd 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim -r /home/dev_ws/install/robot_world/share/robot_world/world/empty_world.sdf --force-version 8'].

@@ -1,0 +1,5 @@
+1750316056.6478405 [INFO] [launch]: All log files can be found below /home/.ros/log/2025-06-19-06-54-16-646979-pwwq-952
+1750316056.6479850 [INFO] [launch]: Default logging verbosity is set to INFO
+1750316056.9009476 [INFO] [gazebo-1]: process started with pid [955]
+1750316077.8640695 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1750316078.0906899 [ERROR] [gazebo-1]: process has died [pid 955, exit code -2, cmd 'ruby $(which gz) sim -r /home/dev_ws/install/robot_world/share/robot_world/world/empty_world.sdf --force-version 8'].

@@ -1,0 +1,3 @@
+1751017610.2469010 [INFO] [launch]: All log files can be found below /home/.ros/log/2025-06-27-09-46-50-245712-pwwq-153
+1751017610.2471423 [INFO] [launch]: Default logging verbosity is set to INFO
+1751017610.7983370 [ERROR] [launch]: Caught exception in launch (see debug for traceback): not well-formed (invalid token): line 31, column 16
