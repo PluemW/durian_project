@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
-
-  <xacro:macro name="wheel" params="num pos_x pos_y pos_z">
-    <joint name="type_joint_${num}" type="continuous">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="wheel" number="" pos_x="" pos_y="" pos_z="">
+  
+    <!-- Joint -->
+    <joint name="type_joint_${number}" type="continuous">
       <parent link="base_link"/>
-      <child link="type_link_${num}"/>
+      <child link="type_link_${number}"/>
       <origin xyz="${pos_x} ${pos_y} ${pos_z}" rpy="0 0 0"/>
     </joint>
 
-    <link name="type_link_${num}">
+    <!-- Link -->
+    <link name="type_link_${number}">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find robot_description)/meshes/type.dae" scale="1 1 1"/>
+          <cylinder radius="0.1" length="0.1"/>
         </geometry>
         <material name="Blue">
           <color rgba="0.0 0.0 1.0 1.0"/>
         </material>
       </visual>
-
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find robot_description)/meshes/type.dae" scale="1 1 1"/>
+          <cylinder radius="0.1" length="0.1"/>
         </geometry>
       </collision>
-
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <mass value="100.0"/>
