@@ -5,27 +5,34 @@
 
     <!-- Base structure -->
     <link name="base_link">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.6 0.6 0.3"/>
-            </geometry>
-            <material name="Orange">
-                <color rgba="1.0 0.5 0 1.0"/>
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.6 0.6 0.3"/>
-            </geometry>
-        </collision>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.6 0.6 0.3"/>
+        </geometry>
+        <material name="Orange">
+          <color rgba="1.0 0.5 0 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.6 0.6 0.3"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="5.0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0"
+                 iyy="0.1" iyz="0.0"
+                 izz="0.1"/>
+      </inertial>
     </link>
 
     <!-- Wheel -->
-    <xacro:wheel number="1" pos_x="0.35" pos_y="0.2" pos_z="0"/>
-    <xacro:wheel number="2" pos_x="-0.35" pos_y="0.2" pos_z="0"/>
-    <xacro:wheel number="3" pos_x="0.35" pos_y="-0.2" pos_z="0"/>
-    <xacro:wheel number="4" pos_x="-0.35" pos_y="-0.2" pos_z="0"/>
+    <xacro:wheel number="1" pos_x="0.40" pos_y="0.25" pos_z="-0.2"/>
+    <xacro:wheel number="2" pos_x="-0.40" pos_y="0.25" pos_z="-0.2"/>
+    <xacro:wheel number="3" pos_x="0.40" pos_y="-0.25" pos_z="-0.2"/>
+    <xacro:wheel number="4" pos_x="-0.40" pos_y="-0.25" pos_z="-0.2"/>
 
 </robot>

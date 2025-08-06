@@ -9,8 +9,23 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <!-- ROS2 and Xacro -->
   <exec_depend>xacro</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
+  <depend>joint_state_publisher_gui</depend>
+
+  <!-- ROS2 Control -->
+  <depend>hardware_interface</depend>
+  <depend>controller_interface</depend>
+  <depend>controller_manager</depend>
+  <depend>ros2_control</depend>
+  <depend>ros2_controllers</depend>
+
+  <!-- Gazebo ROS 2 Control -->
+  <depend>gz_ros2_control</depend>
+
+  <!-- If you use <transmission> in URDF -->
+  <depend>transmission_interface</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

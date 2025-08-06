@@ -25,6 +25,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'odom_transform = robot_simulation.odom_transform:main',
+            'robot_tf_manager = robot_simulation.robot_tf_manager:main',
+            'robot_controller = robot_simulation.robot_controller:main',
         ],
     },
 )

@@ -7,9 +7,11 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(xacro REQUIRED)
+find_package(robot_state_publisher REQUIRED)
 
 install(
-  DIRECTORY meshes urdf
+  DIRECTORY meshes urdf config
   DESTINATION share/${PROJECT_NAME}
 )
 

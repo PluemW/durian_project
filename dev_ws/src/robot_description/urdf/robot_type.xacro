@@ -1,16 +1,18 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="wheel" number="" pos_x="" pos_y="" pos_z="">
+  <xacro:macro name="wheel" params="number pos_x pos_y pos_z">
   
     <!-- Joint -->
-    <joint name="type_joint_${number}" type="continuous">
+    <joint name="wheel_${number}_joint" type="continuous">
       <parent link="base_link"/>
-      <child link="type_link_${number}"/>
-      <origin xyz="${pos_x} ${pos_y} ${pos_z}" rpy="0 0 0"/>
+      <child link="wheel_${number}_link"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="${pos_x} ${pos_y} ${pos_z}" rpy="-1.57 0 0"/>
+      <limit effort="100.0" velocity="20.0" lower="-3.14" upper="3.14"/>
     </joint>
 
     <!-- Link -->
-    <link name="type_link_${number}">
+    <link name="wheel_${number}_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -28,8 +30,8 @@
       </collision>
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="100.0"/>
-        <inertia ixx="10.0" ixy="0.0" ixz="0.0" iyy="10.0" iyz="0.0" izz="10.0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
       </inertial>
     </link>
   </xacro:macro>
