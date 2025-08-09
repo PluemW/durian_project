@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot name="durian_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+    <!-- Joint -->
+    <joint name="steering_1_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="steering_1_link"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.475 0.465 -0.225" rpy="0 0 0"/>
+      <limit effort="100.0" velocity="2.0" lower="-0.7854" upper="0"/>
+    </joint>
+    <joint name="steering_2_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="steering_2_link"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="-0.475 0.465 -0.225" rpy="0 0 0"/>
+      <limit effort="100.0" velocity="2.0" lower="0" upper="0.7854"/>
+    </joint>
+    <joint name="steering_3_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="steering_3_link"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.475 -0.465 -0.225" rpy="0 0 0"/>
+      <limit effort="100.0" velocity="2.0" lower="0" upper="0.7854"/>
+    </joint>
+    <joint name="steering_4_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="steering_4_link"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="-0.475 -0.465 -0.225" rpy="0 0 0"/>
+      <limit effort="100.0" velocity="2.0" lower="-0.7854" upper="0"/>
+    </joint>
+
+    <!-- Link -->
+    <link name="steering_1_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      </inertial>
+    </link>
+    <link name="steering_2_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      </inertial>
+    </link>
+    <link name="steering_3_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      </inertial>
+    </link>
+    <link name="steering_4_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.15"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      </inertial>
+    </link>
+
+</robot>

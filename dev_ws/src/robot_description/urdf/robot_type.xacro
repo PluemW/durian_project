@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="wheel" params="number pos_x pos_y pos_z">
+  <xacro:macro name="wheel" params="prefix number pos_x pos_y pos_z">
   
     <!-- Joint -->
     <joint name="wheel_${number}_joint" type="continuous">
-      <parent link="base_link"/>
+      <parent link="${prefix}"/>
       <child link="wheel_${number}_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="${pos_x} ${pos_y} ${pos_z}" rpy="-1.57 0 0"/>
@@ -35,5 +35,4 @@
       </inertial>
     </link>
   </xacro:macro>
-
 </robot>

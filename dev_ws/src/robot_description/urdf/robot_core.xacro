@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
     <!-- Include xacro -->
+    <xacro:include filename="$(find robot_description)/urdf/robot_steering.xacro"/>
     <xacro:include filename="$(find robot_description)/urdf/robot_type.xacro"/>
 
     <!-- Base structure -->
@@ -8,7 +9,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="0.6 0.6 0.3"/>
+          <box size="1 1 0.3"/> <!-- z: -0.15 -->
         </geometry>
         <material name="Orange">
           <color rgba="1.0 0.5 0 1.0"/>
@@ -17,7 +18,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="0.6 0.6 0.3"/>
+          <box size="1 1 0.3"/>
         </geometry>
       </collision>
       <inertial>
@@ -30,9 +31,9 @@
     </link>
 
     <!-- Wheel -->
-    <xacro:wheel number="1" pos_x="0.40" pos_y="0.25" pos_z="-0.2"/>
-    <xacro:wheel number="2" pos_x="-0.40" pos_y="0.25" pos_z="-0.2"/>
-    <xacro:wheel number="3" pos_x="0.40" pos_y="-0.25" pos_z="-0.2"/>
-    <xacro:wheel number="4" pos_x="-0.40" pos_y="-0.25" pos_z="-0.2"/>
+    <xacro:wheel prefix="steering_1_link" number="1" pos_x="0" pos_y="0.075" pos_z="-0.075"/>
+    <xacro:wheel prefix="steering_2_link" number="2" pos_x="0" pos_y="0.075" pos_z="-0.075"/>
+    <xacro:wheel prefix="steering_3_link" number="3" pos_x="0" pos_y="-0.075" pos_z="-0.075"/>
+    <xacro:wheel prefix="steering_4_link" number="4" pos_x="0" pos_y="-0.075" pos_z="-0.075"/>
 
 </robot>

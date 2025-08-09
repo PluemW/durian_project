@@ -6,27 +6,24 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, Command
 from launch_ros.actions import Node
+import xacro
 
 def generate_launch_description():
-
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-
     robot_description_pkg = get_package_share_directory('robot_description')
     simulation_pkg = get_package_share_directory('robot_simulation')
+    bridge_config_file = os.path.join(simulation_pkg, 'config', 'robot_config.yaml')
 
     xacro_file = os.path.join(robot_description_pkg, 'urdf', 'robot.urdf.xacro')
-    bridge_config_file = os.path.join(simulation_pkg, 'config', 'robot_config.yaml')
+    robot_description_config = xacro.process_file(xacro_file)
+    params = {'robot_description': robot_description_config.toxml(), 'use_sim_time': use_sim_time}
 
     # Robot State Publisher
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        name='robot_state_publisher',
         output='screen',
-        parameters=[{
-            'robot_description': Command(['xacro', ' ', xacro_file]),
-            'use_sim_time': use_sim_time,
-        }]
+        parameters=[params]
     )
 
     joint_state_publisher = Node(
@@ -34,10 +31,7 @@ def generate_launch_description():
         executable='joint_state_publisher',
         name='joint_state_publisher',
         output='screen',
-        parameters=[{
-            'use_sim_time': use_sim_time,
-            'robot_description': Command(['xacro', ' ', xacro_file])
-        }],
+        parameters=[params] 
     )
 
     # Gazebo spawn node
@@ -80,6 +74,13 @@ def generate_launch_description():
         output='screen'
     )
 
+    robot_kinematic = Node(
+        package='robot_simulation',
+        executable='robot_kinematic',
+        name='robot_kinematic',
+        output='screen'
+    )
+
     robot_controller = Node(
         package='robot_simulation',
         executable='robot_controller',
@@ -94,10 +95,11 @@ def generate_launch_description():
             description='Use simulation (Gazebo) clock if true'
         ),
         robot_state_publisher,
-        joint_state_publisher,
+        joint_state_publisher, 
         spawn_robot,
         gz_bridge,
         tf_manager,
         tf_odom_transform,
+        robot_kinematic,
         robot_controller,
     ])

@@ -16,16 +16,10 @@
   gz_type_name: "gz.msgs.Model"
   direction: "GZ_TO_ROS"
 
-# - ros_topic_name: "/xgateway/imu"
-#   gz_topic_name: "/imu"
-#   ros_type_name: "sensor_msgs/msg/Imu"
-#   gz_type_name: "gz.msgs.IMU"
-#   direction: "GZ_TO_ROS"
-
-- ros_topic_name: "/scan"
-  gz_topic_name: "lidar"
-  ros_type_name: "sensor_msgs/msg/LaserScan"
-  gz_type_name: "gz.msgs.LaserScan"
+- ros_topic_name: "/imu"
+  gz_topic_name: "/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
   direction: "GZ_TO_ROS"
 
 - ros_topic_name: "/wheel_1_joint/command"
@@ -48,6 +42,30 @@
 
 - ros_topic_name: "/wheel_4_joint/command"
   gz_topic_name: "/wheel_4_joint/command"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: "ROS_TO_GZ"
+
+- ros_topic_name: "/steering_1_joint/command"
+  gz_topic_name: "/steering_1_joint/command"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: "ROS_TO_GZ"  
+
+- ros_topic_name: "/steering_2_joint/command"
+  gz_topic_name: "/steering_2_joint/command"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: "ROS_TO_GZ"  
+
+- ros_topic_name: "/steering_3_joint/command"
+  gz_topic_name: "/steering_3_joint/command"
+  ros_type_name: "std_msgs/msg/Float64"   
+  gz_type_name: "gz.msgs.Double"
+  direction: "ROS_TO_GZ"
+  
+- ros_topic_name: "/steering_4_joint/command"
+  gz_topic_name: "/steering_4_joint/command"
   ros_type_name: "std_msgs/msg/Float64"
   gz_type_name: "gz.msgs.Double"
   direction: "ROS_TO_GZ"

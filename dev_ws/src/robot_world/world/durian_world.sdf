@@ -1,14 +1,15 @@
 <?xml version="1.0" ?>
 <sdf version="1.10">
     <world name="durian_world">
-        <physics name="1ms" type="ignored">
-            <max_step_size>0.001</max_step_size>
-            <real_time_factor>1.0</real_time_factor>
-        </physics>
+        <!-- Base Gazebo plugins -->
         <plugin
             filename="gz-sim-physics-system"
             name="gz::sim::systems::Physics">
         </plugin>
+            <physics name="1ms" type="ode">
+        <max_step_size>0.005</max_step_size>
+        <real_time_factor>1.0</real_time_factor>
+        </physics>
         <plugin
             filename="gz-sim-user-commands-system"
             name="gz::sim::systems::UserCommands">
@@ -16,6 +17,17 @@
         <plugin
             filename="gz-sim-scene-broadcaster-system"
             name="gz::sim::systems::SceneBroadcaster">
+        </plugin>
+        <plugin
+            filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+        <render_engine>ogre2</render_engine>
+        </plugin>
+
+        <!-- IMU plugin manages all IMU sensors -->
+        <plugin
+            filename="libgz-sim-imu-system.so"
+            name="gz::sim::systems::Imu">
         </plugin>
 
         <light type="directional" name="sun">

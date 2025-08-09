@@ -11,7 +11,7 @@ find_package(xacro REQUIRED)
 find_package(robot_state_publisher REQUIRED)
 
 install(
-  DIRECTORY meshes urdf config
+  DIRECTORY meshes urdf
   DESTINATION share/${PROJECT_NAME}
 )
 

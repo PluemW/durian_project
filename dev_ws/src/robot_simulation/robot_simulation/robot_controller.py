@@ -1,47 +1,63 @@
 #!/usr/bin/env python3
+import math
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist
 from std_msgs.msg import Float64
+from geometry_msgs.msg import Twist
 
-class CmdVelToJointController(Node):
+class CommandController(Node):
     def __init__(self):
-        super().__init__('cmd_vel_to_joint_controller')
+        super().__init__('drive_controller')
 
-        # สร้าง Publisher สำหรับล้อทั้ง 4
-        self.pub_fl = self.create_publisher(Float64, '/wheel_1_joint/command', 10)  # front-left
-        self.pub_fr = self.create_publisher(Float64, '/wheel_2_joint/command', 10)  # front-right
-        self.pub_rl = self.create_publisher(Float64, '/wheel_3_joint/command', 10)  # rear-left
-        self.pub_rr = self.create_publisher(Float64, '/wheel_4_joint/command', 10)  # rear-right
+        # Publishers for steering joints
+        self.pub_1 = self.create_publisher(Float64, '/steering_1_joint/command', 10)
+        self.pub_2 = self.create_publisher(Float64, '/steering_2_joint/command', 10)
+        self.pub_3 = self.create_publisher(Float64, '/steering_3_joint/command', 10)
+        self.pub_4 = self.create_publisher(Float64, '/steering_4_joint/command', 10)
 
-        # Subscribe /cmd_vel
-        self.sub = self.create_subscription(Twist, '/cmd_vel', self.cmd_vel_callback, 10)
+        # Publishers for wheels (rear only in your setup)
+        self.pub_rl = self.create_publisher(Float64, '/wheel_2_joint/command', 10)  
+        self.pub_rr = self.create_publisher(Float64, '/wheel_4_joint/command', 10)  
 
-        # พารามิเตอร์ของรถ
-        self.wheel_base = 0.5  # ระยะระหว่างล้อซ้าย-ขวา (เมตร)
-        self.wheel_radius = 0.1  # รัศมีล้อ (เมตร)
+        # Subscriptions
+        self.sub_cmd = self.create_subscription(Twist, '/cmd_vel', self.cmd_callback, 10)
 
-    def cmd_vel_callback(self, msg: Twist):
-        linear = msg.linear.x
-        angular = msg.angular.z
+        # Timer loop
+        self.timer = self.create_timer(0.1, self.timer_callback)
 
-        # คำนวณความเร็วแต่ละล้อ (unit: m/s)
-        left_speed = linear - angular * self.wheel_base / 2.0
-        right_speed = linear + angular * self.wheel_base / 2.0
+        self.direct = [0.0, 0.0]  # left-right
+        self.speed = 0.0
+        self.angular = 0.0
 
-        # แปลงเป็น angular velocity ของล้อ (rad/s)
-        left_wheel_vel = left_speed / self.wheel_radius
-        right_wheel_vel = right_speed / self.wheel_radius
+    def cmd_callback(self, msg: Twist):
+        self.speed = msg.linear.x
+        self.angular = msg.angular.z
 
-        # Publish ไปยังล้อ
-        self.pub_fl.publish(Float64(data=left_wheel_vel))   # wheel_1_joint
-        self.pub_rl.publish(Float64(data=left_wheel_vel))   # wheel_3_joint
-        self.pub_fr.publish(Float64(data=right_wheel_vel))  # wheel_2_joint
-        self.pub_rr.publish(Float64(data=right_wheel_vel))  # wheel_4_joint
+    def turn(self):
+        self.pub_1.publish(Float64(data=-5.0))
+        self.pub_2.publish(Float64(data=5.0))
+        self.pub_3.publish(Float64(data=5.0))
+        self.pub_4.publish(Float64(data=-5.0))
+        self.pub_rl.publish(Float64(data=-self.speed)) if self.angular > 0.0 else self.pub_rl.publish(Float64(data=self.speed))
+        self.pub_rr.publish(Float64(data=self.speed)) if self.angular > 0.0 else self.pub_rl.publish(Float64(data=-self.speed))
+
+    def go_straight(self):
+        self.pub_1.publish(Float64(data=5.0))
+        self.pub_2.publish(Float64(data=-5.0))
+        self.pub_3.publish(Float64(data=-5.0))
+        self.pub_4.publish(Float64(data=5.0))
+        self.pub_rl.publish(Float64(data=self.speed))
+        self.pub_rr.publish(Float64(data=self.speed))
+
+    def timer_callback(self):
+        if self.angular > 0.0:
+            self.turn()
+        else:
+            self.go_straight()
 
 def main(args=None):
     rclpy.init(args=args)
-    node = CmdVelToJointController()
+    node = CommandController()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
