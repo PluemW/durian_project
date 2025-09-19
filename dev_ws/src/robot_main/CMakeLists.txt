@@ -17,12 +17,17 @@ find_package(rcl_interfaces REQUIRED)
 install(
   DIRECTORY
   src
+  model
+  image_processing
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(
   PROGRAMS
-  src/test.py
+  src/bt_state.py
+  src/detection.py
+  src/calibration.py
+  image_processing/od_yolo.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
