@@ -18,16 +18,19 @@ install(
   DIRECTORY
   src
   model
-  image_processing
+  # image_processing
+  lidar
+  launch
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(
   PROGRAMS
-  src/bt_state.py
+  src/state_control.py
   src/detection.py
-  src/calibration.py
-  image_processing/od_yolo.py
+  src/motion_control.py
+  launch/launch.py
+  lidar/plot.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

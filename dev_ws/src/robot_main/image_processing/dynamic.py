@@ -2,7 +2,7 @@ import cv2
 from ultralytics import YOLO
 import numpy as np
 
-model = YOLO("dev_ws/src/robot_main/model/hu3.pt")
+model = YOLO("dev_ws/src/robot_main/model/best_ncnn_model")
 cap = cv2.VideoCapture(2)
 
 # =====================================

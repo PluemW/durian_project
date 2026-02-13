@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="durian_plane">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <plane>
+            <size>50 50</size>
+          </plane>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <script>
+            <uri>model://durian_plane/materials/scripts</uri>
+            <uri>model://durian_plane/materials/textures</uri>
+            <name>Durian/Image</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+</sdf>

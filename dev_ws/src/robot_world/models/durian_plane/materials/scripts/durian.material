@@ -1,0 +1,13 @@
+material Durian/Image
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture durian_img.png
+      }
+    }
+  }
+}
